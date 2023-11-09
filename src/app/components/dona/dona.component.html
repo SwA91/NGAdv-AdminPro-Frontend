@@ -1,15 +1,14 @@
 <div class="card">
     <div class="card-body">
 
-        <h3>{{ title }}</h3> 
-        
+        <h3>{{ title }}</h3>
+
         <div style="display: block">
-            <canvas 
-              baseChart
+            <canvas
               [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [colors]="colors"
-              chartType="doughnut">
+              class="chart"
+              [type]="doughnutChartType"
+              baseChart>
             </canvas>
         </div>
 
