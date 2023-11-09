@@ -21,8 +21,8 @@ export class DonaComponent {
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: [
-      { data: [350, 450, 100] },
-      { data: [50, 150, 120] },
+      { data: [10, 20, 30] },
+      { data: [40, 50, 60] },
     ],
   };
 
