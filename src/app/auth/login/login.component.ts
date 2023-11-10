@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginFormInterface } from 'src/app/interfaces/login-form.interface';
@@ -15,8 +15,8 @@ declare const google: any;
 export class LoginComponent implements OnInit, AfterViewInit {
 
   @ViewChild('googleBtn')
-  googleBtn: ElementRef;
-
+  public googleBtn: ElementRef;
+  public auth2: any;
   public loginForm = this.fb.group(
     {
       email: [localStorage.getItem('email') || '', [Validators.required, Validators.email]],
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   );
 
   constructor(
+    private ngZone: NgZone,
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder
@@ -40,23 +41,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   googleInit() {
-    google.accounts.id.initialize({
-      client_id: "428958341715-vd5v3i33lfi4uq6mb2kjvhaerd6omt0h.apps.googleusercontent.com",
-      // keep the instance this LoginComponent
-      callback: (resp: unknown) => this.handleCredentialResponse(resp)
-    });
-    google.accounts.id.renderButton(
-      // document.getElementById("googleBtn"),
-      this.googleBtn.nativeElement,
-      { theme: "outline", size: "large" }  // customization attributes
-    );
+    this.userService.initGoogle(this.handleCredentialResponse.bind(this));
+    this.userService.buttonGoogle(this.googleBtn);
   }
 
   handleCredentialResponse(resp: any) {
     this.userService.loginGoogle(resp.credential).subscribe({
       next: (resp) => {
         // navigate to dashboard
-        this.router.navigateByUrl('/');
+        this.ngZone.run(() => this.router.navigateByUrl('/'));
       },
       error: (err) => {
         // launch error

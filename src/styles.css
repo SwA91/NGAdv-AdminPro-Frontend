@@ -6,3 +6,6 @@
     animation-fill-mode: both
 }
 
+.cursor {
+    cursor: pointer;
+}
