@@ -39,7 +39,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
 
-    google.accounts.id.revoke('willyarrojas@gmail.com', () => {
+    google.accounts.id.revoke('', () => {
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
       })
