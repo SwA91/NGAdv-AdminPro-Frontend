@@ -6,6 +6,7 @@ import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { catchError, map, tap } from "rxjs/operators";
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 const base_url = environment.base_url;
 declare const google: any;
@@ -15,11 +16,39 @@ declare const google: any;
 })
 export class UserService {
 
+  public user: User;
+
   constructor(
     private ngZone: NgZone,
     private router: Router,
     private http: HttpClient
   ) { }
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.user.uid || '';
+  }
+
+  updateProfile(data: { email: string, name: string, role: string }) {
+
+    data = {
+      ...data,
+      role: this.user.role
+    };
+
+    return this.http.put(
+      `${base_url}/users/${this.uid}`,
+      data,
+      {
+        headers: {
+          'x-token': this.token
+        }
+      }
+    );
+  }
 
   initGoogle(_callback) {
     google.accounts.id.initialize({
@@ -39,29 +68,35 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
 
-    google.accounts.id.revoke('', () => {
-      this.ngZone.run(() => {
-        this.router.navigateByUrl('/login');
-      })
-    });
+    const email = '';
 
+    if (email) {
+      google.accounts.id.revoke('', () => {
+        this.ngZone.run(() => {
+          this.router.navigateByUrl('/login');
+        })
+      });
+    } else {
+      this.router.navigateByUrl('/login');
+    }
   }
 
   validateToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
 
     return this.http.get(
       `${base_url}/login/renew`,
       {
         headers: {
-          'x-token': token
+          'x-token': this.token
         }
       }
     ).pipe(
-      tap((resp: any) => {
+      map((resp: any) => {
+        const { name, email, role, google, uid, img } = resp.user;
+        this.user = new User(name, email, null, img, google, role, uid);
         localStorage.setItem('token', resp.token)
+        return true;
       }),
-      map(resp => true),
       catchError(err => of(false))
     );
   }
