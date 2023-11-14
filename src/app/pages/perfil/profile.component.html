@@ -40,10 +40,10 @@
                 <h6 class="card-subtitle">Image User</h6>
 
                 <img src="" alt="">
-                <input type="file">
+                <input type="file" (change)="changeImage($event.target['files'][0])">
                 <br>
                 <br>
-                <button type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                <button (click)="uploadImage()" [disabled]="!imageToUpload" type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10">
                     <i class="fa fa-save"></i>
                     Change image
                 </button>
