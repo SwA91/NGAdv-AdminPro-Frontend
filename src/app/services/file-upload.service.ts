@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
+import { TypeTable } from '../enum/shared.enum';
 
 const base_url = environment.base_url;
 
@@ -41,10 +42,4 @@ export class FileUploadService {
       return false;
     }
   }
-}
-
-export enum TypeTable {
-  USERS = 'users',
-  DOCTORS = 'doctors',
-  HOSPITALS = 'hospitals'
 }

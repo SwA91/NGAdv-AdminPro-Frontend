@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TypeTable } from 'src/app/enum/shared.enum';
 import { User } from 'src/app/models/user.model';
-import { FileUploadService, TypeTable } from 'src/app/services/file-upload.service';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
