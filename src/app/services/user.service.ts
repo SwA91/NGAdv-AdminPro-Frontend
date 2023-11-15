@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { ElementRef, Injectable, NgZone } from '@angular/core';
-import { RegisterForm } from '../interfaces/register-form.interface';
+import { Router } from '@angular/router';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { LoginFormInterface } from '../interfaces/login-form.interface';
-import { catchError, map, tap } from "rxjs/operators";
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { RegisterForm } from '../interfaces/register-form.interface';
 import { User } from '../models/user.model';
 
 const base_url = environment.base_url;
@@ -47,6 +47,10 @@ export class UserService {
           'x-token': this.token
         }
       }
+    ).pipe(
+      catchError(({ error }) => {
+        return throwError(() => error);
+      })
     );
   }
 
@@ -102,7 +106,6 @@ export class UserService {
   }
 
   loginGoogle(token: string) {
-    console.log('loginGoogle', token);
 
     return this.http.post(
       `${base_url}/login/google`,

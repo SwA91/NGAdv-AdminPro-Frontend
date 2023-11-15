@@ -11,20 +11,20 @@
                         <label for="exampleInputuname">User Name</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control" id="exampleInputuname" placeholder="Username" formControlName="name">
+                            <input type="text" class="form-control" id="exampleInputuname" placeholder="Username"
+                                formControlName="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email" formControlName="email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email"
+                                formControlName="email" [readOnly]="user.google">
                         </div>
                     </div>
-                    <button
-                      [disabled]="profileForm.invalid"
-                      type="submit"
-                      class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                    <button [disabled]="profileForm.invalid" type="submit"
+                        class="btn btn-success btn-block waves-effect waves-light m-r-10">
                         <i class="fa fa-save"></i>
                         Submit
                     </button>
@@ -39,11 +39,23 @@
                 <h4 class="card-title">Avatar</h4>
                 <h6 class="card-subtitle">Image User</h6>
 
-                <img src="" alt="">
+                <div class="text-center">
+                    <img
+                      *ngIf="!imgTemp"
+                      [src]="user.imageUrl"
+                      alt="user.name"
+                      class="img-avatar">
+                    <img
+                      *ngIf="imgTemp"
+                      [src]="imgTemp"
+                      alt="user.name"
+                      class="img-avatar">
+                </div>
                 <input type="file" (change)="changeImage($event.target['files'][0])">
                 <br>
                 <br>
-                <button (click)="uploadImage()" [disabled]="!imageToUpload" type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10">
+                <button (click)="uploadImage()" [disabled]="!imageToUpload" type="button"
+                    class="btn btn-success btn-block waves-effect waves-light m-r-10">
                     <i class="fa fa-save"></i>
                     Change image
                 </button>

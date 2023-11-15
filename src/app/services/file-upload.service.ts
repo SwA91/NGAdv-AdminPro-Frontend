@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { TypeTable } from '../enum/shared.enum';
+import { IUploadsUserResponse } from '../interfaces/api.interface';
 
 const base_url = environment.base_url;
 
@@ -34,12 +35,17 @@ export class FileUploadService {
         },
       );
 
-      const data = await resp.json();
-      return true;
+      const data: IUploadsUserResponse = await resp.json();
+
+      if (data.ok) {
+        return data.nameFile;
+      } else {
+        return Promise.reject(data);
+      }
 
     } catch (error) {
       console.log('updatePhoto > error: ', error);
-      return false;
+      return Promise.reject(error);
     }
   }
 }
