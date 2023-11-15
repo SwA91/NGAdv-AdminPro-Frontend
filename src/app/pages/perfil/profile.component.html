@@ -39,19 +39,11 @@
                 <h4 class="card-title">Avatar</h4>
                 <h6 class="card-subtitle">Image User</h6>
 
-                <div class="text-center">
-                    <img
-                      *ngIf="!imgTemp"
-                      [src]="user.imageUrl"
-                      alt="user.name"
-                      class="img-avatar">
-                    <img
-                      *ngIf="imgTemp"
-                      [src]="imgTemp"
-                      alt="user.name"
-                      class="img-avatar">
+                <div (click)="inputFile.click()" class="text-center cursor">
+                    <img *ngIf="!imgTemp" [src]="user.imageUrl" alt="user.name" class="img-avatar">
+                    <img *ngIf="imgTemp" [src]="imgTemp" alt="user.name" class="img-avatar">
                 </div>
-                <input type="file" (change)="changeImage($event.target['files'][0])">
+                <input [hidden]="true" #inputFile type="file" (change)="changeImage($event.target['files'][0])">
                 <br>
                 <br>
                 <button (click)="uploadImage()" [disabled]="!imageToUpload" type="button"
