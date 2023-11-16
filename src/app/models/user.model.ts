@@ -14,13 +14,21 @@ export class User {
     ) { }
 
     get imageUrl() {
-        if (this.img?.includes('https')) {
-            return this.img;
+
+        let url = `${base_url}/uploads/users/no-image`;
+
+        switch (true) {
+            case this.img?.includes('https'):
+                url = this.img;
+                break;
+
+            case !!this.img:
+                url = `${base_url}/uploads/users/${this.img}`
+                break;
+            default:
+                break;
         }
-        if (this.img) {
-            return `${base_url}/uploads/users/${this.img}`
-        } else {
-            return `${base_url}/uploads/users/no-image`
-        }
+
+        return url;
     }
 }

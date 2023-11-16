@@ -11,3 +11,7 @@ export interface IGetUsersResponse extends IGenericResponse {
     users: User[],
     total: number
 }
+
+export interface IAllCollectionResponse extends IGenericResponse {
+    result: User[],
+}

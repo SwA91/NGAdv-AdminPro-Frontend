@@ -10,7 +10,17 @@
     cursor: pointer;
 }
 
-.img-avatar{
+.img-avatar {
     width: 200px;
     height: 200px;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.avatar {
+    border: 1px solid #8a959a;
+    width: 40px;
+    border-radius: 100%;
 }

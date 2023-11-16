@@ -43,10 +43,15 @@ export class UserService {
   loadUsers(from: number = 0) {
 
     const url = `${base_url}/${TypeAPI.USERS}?${TypeParamsQS.FROM}=${from}`;
-    const headers = {};
-    headers[TypeHeader.TOKEN] = this.token;
 
-    return this.http.get<IGetUsersResponse>(url, this.headers);
+    return this.http.get<IGetUsersResponse>(url, this.headers)
+      .pipe(
+        // delay(2000), // delay several seconds for example
+        map(resp => {
+          resp.users = resp.users.map(user => new User(user.name, user.email, null, user.img, user.google, user.role, user.uid));
+          return resp;
+        })
+      );
   }
 
   updateProfile(data: { email: string, name: string, role: string }) {
