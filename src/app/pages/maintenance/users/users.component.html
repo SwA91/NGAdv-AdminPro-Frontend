@@ -35,7 +35,7 @@
                                 <th class="w100">Avatar</th>
                                 <th>Email</th>
                                 <th>Name</th>
-                                <th class="w100">Role</th>
+                                <th class="w140">Role</th>
                                 <th class="w100">Auth</th>
                                 <th class="text-nowrap w100">Actions</th>
                             </tr>
@@ -43,20 +43,35 @@
                         <tbody>
                             <tr *ngFor="let user of users">
                                 <td class="text-center">
-                                    <img class="avatar" [src]="user.imageUrl" alt="avatar">
+                                    <img
+                                      data-toggle="tooltip"
+                                      data-original-title="Load image"
+                                      (click)="openModal(user)"
+                                      class="avatar cursor"
+                                      [src]="user.imageUrl"
+                                      alt="avatar">
                                 </td>
                                 <td>{{user.email}}</td>
                                 <td>{{user.name}}</td>
-                                <td>{{user.role}}</td>
+                                <td>
+                                    <select (change)="changeRole(user)" class="form-control" [(ngModel)]="user.role">
+                                        <option value="ADMIN_ROLE">Admin</option>
+                                        <option value="USER_ROLE">User</option>
+                                    </select>
+                                </td>
                                 <td>
                                     <span *ngIf="user.google" class="label label-danger">Google</span>
                                     <span *ngIf="!user.google" class="label label-info">Email</span>
                                 </td>
                                 <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i
-                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i
-                                            class="fa fa-close text-danger"></i> </a>
+                                    <!-- <a href="#" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a> -->
+
+                                    <a (click)="deleteUser(user)" class="cursor" data-toggle="tooltip"
+                                        data-original-title="Delete">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

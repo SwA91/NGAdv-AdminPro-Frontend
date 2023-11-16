@@ -5,7 +5,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { TypeAPI, TypeHeader, TypeParamsQS } from '../enum/shared.enum';
-import { IGetUsersResponse } from '../interfaces/api.interface';
+import { IGenericResponse, IGetUsersResponse } from '../interfaces/api.interface';
 import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { User } from '../models/user.model';
@@ -26,18 +26,10 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  get token(): string {
-    return localStorage.getItem('token') || '';
-  }
+  deleteUser(user: User) {
+    const url = `${base_url}/${TypeAPI.USERS}/${user.uid}`;
 
-  get uid(): string {
-    return this.user.uid || '';
-  }
-
-  get headers() {
-    const headers = {};
-    headers[TypeHeader.TOKEN] = this.token;
-    return { headers };
+    return this.http.delete<IGenericResponse>(url, this.headers);
   }
 
   loadUsers(from: number = 0) {
@@ -54,15 +46,25 @@ export class UserService {
       );
   }
 
+  saveProfile(user: User) {
+
+    return this.http.put(
+      `${base_url}/${TypeAPI.USERS}/${user.uid}`,
+      user,
+      this.headers
+    ).pipe(
+      catchError(({ error }) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   updateProfile(data: { email: string, name: string, role: string }) {
 
     data = {
       ...data,
       role: this.user.role
     };
-
-    const headers = {};
-    headers[TypeHeader.TOKEN] = this.token;
 
     return this.http.put(
       `${base_url}/${TypeAPI.USERS}/${this.uid}`,
@@ -158,5 +160,19 @@ export class UserService {
         localStorage.setItem('token', resp.token)
       })
     );
+  }
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.user.uid || '';
+  }
+
+  get headers() {
+    const headers = {};
+    headers[TypeHeader.TOKEN] = this.token;
+    return { headers };
   }
 }
