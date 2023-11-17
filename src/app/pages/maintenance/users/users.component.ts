@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, delay } from 'rxjs';
 import { TypeTable } from 'src/app/enum/shared.enum';
 import { IGenericResponse } from 'src/app/interfaces/api.interface';
 import { User } from 'src/app/models/user.model';
@@ -12,13 +13,14 @@ import Swal from 'sweetalert2';
   templateUrl: './users.component.html',
   styles: []
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
   public totalUsers: number = 0;
   public users: User[] = [];
   public usersTemp: User[] = [];
   public from: number = 0;
   public loading: boolean = true;
+  public imgSubs: Subscription;
 
   constructor(
     private modalImageService: ModalImageService,
@@ -28,9 +30,15 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
+    this.imgSubs = this.modalImageService.newImage.pipe(delay(100)).subscribe((img) => this.loadUsers());
   }
+
+  ngOnDestroy(): void {
+    this.imgSubs.unsubscribe();
+  }
+
   openModal(user: User) {
-    this.modalImageService.openModal();
+    this.modalImageService.openModal(TypeTable.USERS, user.uid, user.img);
   }
 
   changeRole(user: User) {

@@ -44,6 +44,7 @@
                     <img *ngIf="imgTemp" [src]="imgTemp" alt="user.name" class="img-avatar">
                 </div>
                 <input [hidden]="true" #inputFile type="file" (change)="changeImage($event.target['files'][0])">
+                
                 <br>
                 <br>
                 <button (click)="uploadImage()" [disabled]="!imageToUpload" type="button"
