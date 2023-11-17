@@ -1,3 +1,4 @@
+import { Hospital } from "../models/hospital.mode";
 import { User } from "../models/user.model";
 
 export interface IGenericResponse {
@@ -9,6 +10,11 @@ export interface IUploadsUserResponse extends IGenericResponse {
 }
 export interface IGetUsersResponse extends IGenericResponse {
     users: User[],
+    total: number
+}
+
+export interface IGetHospitalsResponse extends IGenericResponse {
+    hospitals: Hospital[],
     total: number
 }
 
