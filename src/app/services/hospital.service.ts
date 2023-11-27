@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { TypeAPI, TypeHeader } from '../enum/shared.enum';
-import { IGetHospitalsResponse } from '../interfaces/api.interface';
+import { IResultResponse } from '../interfaces/api.interface';
 
 const base_url = environment.base_url;
 
@@ -19,7 +19,7 @@ export class HospitalService {
 
     const url = `${base_url}/${TypeAPI.HOSPITALS}`;
 
-    return this.http.get<IGetHospitalsResponse>(url, this.headers);
+    return this.http.get<IResultResponse>(url, this.headers);
   }
 
   createHospital(name: string) {

@@ -3,7 +3,8 @@
         <div class="card">
             <div class="card-body">
 
-                <input type="text" class="form-control" placeholder="Search hospitals...">
+                <input #inputTerm (keyup)="search$.next(inputTerm.value)" type="text" class="form-control"
+                    placeholder="Search hospitals...">
 
             </div>
         </div>
@@ -52,7 +53,8 @@
                         <tbody>
                             <tr *ngFor="let hospital of hospitals">
                                 <td>
-                                    <img (click)="openModalUpdateImageHospital(hospital)" data-toggle="tooltip" data-original-title="Load image" class="avatar cursor"
+                                    <img (click)="openModalUpdateImageHospital(hospital)" data-toggle="tooltip"
+                                        data-original-title="Load image" class="avatar cursor"
                                         [src]="hospital.img | image: typeHospital" alt="hospital">
                                 </td>
                                 <td>
@@ -64,7 +66,8 @@
                                         data-original-title="Save">
                                         <i class="fa fa-pencil text-inverse m-r-10"></i>
                                     </a>
-                                    <a (click)="deleteHospital(hospital)" class="cursor" data-toggle="tooltip" data-original-title="Delete">
+                                    <a (click)="deleteHospital(hospital)" class="cursor" data-toggle="tooltip"
+                                        data-original-title="Delete">
                                         <i class="fa fa-close text-danger"></i>
                                     </a>
                                 </td>

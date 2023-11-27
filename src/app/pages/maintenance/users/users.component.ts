@@ -96,7 +96,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       this.searchService.search(TypeTable.USERS, term)
         .subscribe({
           next: (resp) => {
-            this.users = resp.result;
+            this.users = resp.result as User[];
             this.totalUsers = this.users.length;
           },
           error: (err) => console.log('error', err)
