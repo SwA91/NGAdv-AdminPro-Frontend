@@ -1,1 +1,57 @@
-<p>doctor works!</p>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Doctor</h4>
+                <h6 class="card-subtitle">Update information</h6>
+
+                <form class="form p-t-20">
+
+                    <div class="form-group">
+                        <label for="name">Photo</label>
+                        <div class="input-group">
+                            <img class="w100"
+                                [src]="'http://localhost:3000/api/uploads/users/c3e14b59-4f3e-4241-8428-5e3da6d6c61b.jpg'"
+                                alt="avatar">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input type="text" class="form-control" id="name" placeholder="Doctor name">
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="hospital">Hospital</label>
+                        <div class="input-group">
+                            <select name="" id="hospital" class="form-control custom-select">
+                                <option>Hospital 1</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Hospital assign</h6>
+
+                <img class="w100"
+                    [src]="'http://localhost:3000/api/uploads/users/c3e14b59-4f3e-4241-8428-5e3da6d6c61b.jpg'"
+                    alt="avatar">
+            </div>
+        </div>
+    </div>
+</div>

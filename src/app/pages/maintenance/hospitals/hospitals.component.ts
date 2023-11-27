@@ -62,11 +62,11 @@ export class HospitalsComponent extends UnsubscribeComponent implements OnInit {
     });
   }
 
-  openModalUpdateImageHospital(hospital: Hospital) {
+  openModalUpdateImage(hospital: Hospital) {
     this.modalImageService.openModal(TypeTable.HOSPITALS, hospital._id, hospital.img);
   }
 
-  async openModalNewHospital() {
+  async openModalNewEntity() {
     const { value = '' } = await Swal.fire<string>({
       title: 'Create hospital',
       text: 'Type new name hospital',
