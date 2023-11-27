@@ -17,7 +17,15 @@ export interface IGetUsersResponse extends IGenericResponse {
     total: number
 }
 
-// especial interfaces for User, Hospital and Doctor
-export interface IResultResponse extends IGenericResponse {
+// especial interfaces for list User, Hospital and Doctor
+export interface IListResultResponse extends IGenericResponse {
     result: User[] | Hospital[] | Doctor[],
+}
+
+export interface IOneResultResponse extends IGenericResponse {
+    result: Doctor,
+}
+
+export interface INewDoctorResponse extends IGenericResponse {
+    doctor: Doctor
 }

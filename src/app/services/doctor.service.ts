@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { TypeAPI, TypeHeader } from '../enum/shared.enum';
-import { IResultResponse } from '../interfaces/api.interface';
+import { INewDoctorResponse, IListResultResponse, IOneResultResponse } from '../interfaces/api.interface';
 import { Doctor } from '../models/doctor.model';
 
 const base_url = environment.base_url;
@@ -16,18 +16,25 @@ export class DoctorService {
     private http: HttpClient,
   ) { }
 
+  getDoctorById(id: string) {
+
+    const url = `${base_url}/${TypeAPI.DOCTORS}/${id}`;
+
+    return this.http.get<IOneResultResponse>(url, this.headers);
+  }
+
   loadDoctors() {
 
     const url = `${base_url}/${TypeAPI.DOCTORS}`;
 
-    return this.http.get<IResultResponse>(url, this.headers);
+    return this.http.get<IListResultResponse>(url, this.headers);
   }
 
-  createDoctor(doctor: Doctor) {
+  createDoctor(doctor: { name: string, hospital: string }) {
 
     const url = `${base_url}/${TypeAPI.DOCTORS}`;
 
-    return this.http.post(url, doctor, this.headers);
+    return this.http.post<INewDoctorResponse>(url, doctor, this.headers);
   }
 
   updateDoctor(doctor: Doctor) {

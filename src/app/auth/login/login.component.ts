@@ -12,7 +12,7 @@ declare const google: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements AfterViewInit {
 
   @ViewChild('googleBtn')
   public googleBtn: ElementRef;
@@ -35,9 +35,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // build google init
     this.googleInit();
-  }
-
-  ngOnInit(): void {
   }
 
   googleInit() {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TypeAPI, TypeHeader, TypeTable } from '../enum/shared.enum';
-import { IResultResponse } from '../interfaces/api.interface';
+import { IListResultResponse } from '../interfaces/api.interface';
 import { User } from '../models/user.model';
 
 const base_url = environment.base_url;
@@ -20,7 +20,7 @@ export class SearchService {
   search(type: TypeTable, term: string = '') {
     const url = `${base_url}/${TypeAPI.ALL}/${TypeAPI.COLLECTION}/${type}/${term}`;
 
-    return this.http.get<IResultResponse>(url, this.headers)
+    return this.http.get<IListResultResponse>(url, this.headers)
       .pipe(
         map(resp => {
           switch (type) {
