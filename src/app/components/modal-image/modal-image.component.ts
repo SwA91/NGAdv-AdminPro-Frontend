@@ -27,12 +27,11 @@ export class ModalImageComponent {
       .updatePhoto(this.imageToUpload, type, id)
       .then((img) => {
         Swal.fire('Save', 'Image updated', 'success');
-        this.closeModal();
         this.modalImageService.newImage.emit(img);
-      })
-      .catch((err: IGenericResponse) => {
+      }).catch((err: IGenericResponse) => {
         Swal.fire('Error', err.msg, 'error');
-      });;
+        this.modalImageService.newImage.error(err);
+      }).finally(() => this.closeModal());
   }
 
   changeImage(file: File) {

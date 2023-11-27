@@ -15,11 +15,32 @@ export class HospitalService {
     private http: HttpClient
   ) { }
 
-  loadUsers() {
+  loadHospitals() {
 
     const url = `${base_url}/${TypeAPI.HOSPITALS}`;
 
     return this.http.get<IGetHospitalsResponse>(url, this.headers);
+  }
+
+  createHospital(name: string) {
+
+    const url = `${base_url}/${TypeAPI.HOSPITALS}`;
+
+    return this.http.post(url, { name }, this.headers);
+  }
+
+  updateHospital(id: string, name: string) {
+
+    const url = `${base_url}/${TypeAPI.HOSPITALS}/${id}`;
+
+    return this.http.put(url, { name }, this.headers);
+  }
+
+  removeHospital(id: string) {
+
+    const url = `${base_url}/${TypeAPI.HOSPITALS}/${id}`;
+
+    return this.http.delete(url, this.headers);
   }
 
   get token(): string {

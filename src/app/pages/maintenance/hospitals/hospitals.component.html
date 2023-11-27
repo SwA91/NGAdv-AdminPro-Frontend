@@ -24,37 +24,49 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Hopsitals total ({{hospitals.length}})</h4>
-                <h6 class="card-subtitle">Hospitals registed in my application
-                </h6>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Hopsital totals ({{hospitals.length}})</h4>
+                        <h6 class="card-subtitle">Hospitals registed in my application </h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <button (click)="openModalNewHospital()" class="btn btn-primary">
+                                <i class="fa fa-hospital-o"></i>
+                                Create Hospital
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Photo</th>
                                 <th>Name</th>
-                                <th class="text-nowrap">Actions</th>
+                                <th class="text-nowrap w100">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let hospital of hospitals">
                                 <td>
-                                    <img
-                                      data-toggle="tooltip"
-                                      data-original-title="Load image"
-                                      class="avatar cursor"
-                                      [src]="hospital.img | image: typeHospital"
-                                      alt="hospital">
+                                    <img (click)="openModalUpdateImageHospital(hospital)" data-toggle="tooltip" data-original-title="Load image" class="avatar cursor"
+                                        [src]="hospital.img | image: typeHospital" alt="hospital">
                                 </td>
                                 <td>
                                     <input [(ngModel)]="hospital.name" type="text" name="name" class="form-control"
                                         placeholder="name hospital">
                                 </td>
                                 <td class="text-nowrap text-center">
-                                    <a href="#" data-toggle="tooltip" data-original-title="Save"> <i
-                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                    <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i
-                                            class="fa fa-close text-danger"></i> </a>
+                                    <a (click)="saveChanges(hospital)" class="cursor" data-toggle="tooltip"
+                                        data-original-title="Save">
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <a (click)="deleteHospital(hospital)" class="cursor" data-toggle="tooltip" data-original-title="Delete">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
