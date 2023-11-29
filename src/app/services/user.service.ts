@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { TypeAPI, TypeHeader, TypeParamsQS } from '../enum/shared.enum';
+import { TypeAPI, TypeHeader, TypeParamsQS, TypeRole } from '../enum/shared.enum';
 import { IGenericResponse, IGetUsersResponse } from '../interfaces/api.interface';
 import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
@@ -93,7 +93,9 @@ export class UserService {
   }
 
   logout() {
+
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
 
     const email = '';
 
@@ -121,7 +123,7 @@ export class UserService {
       map((resp: any) => {
         const { name, email, role, google, uid, img } = resp.user;
         this.user = new User(name, email, null, img, google, role, uid);
-        localStorage.setItem('token', resp.token)
+        this.saveLocalStorage(resp.token, resp.menu)
         return true;
       }),
       catchError(err => of(false))
@@ -135,7 +137,7 @@ export class UserService {
       { token }
     ).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token)
+        this.saveLocalStorage(resp.token, resp.menu)
       })
     );
   }
@@ -146,7 +148,7 @@ export class UserService {
       formData
     ).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token)
+        this.saveLocalStorage(resp.token, resp.menu)
       })
     );
   }
@@ -157,9 +159,18 @@ export class UserService {
       formData
     ).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token)
+        this.saveLocalStorage(resp.token, resp.menu)
       })
     );
+  }
+
+  private saveLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
+  get role(): TypeRole {
+    return this.user.role;
   }
 
   get token(): string {

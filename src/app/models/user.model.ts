@@ -1,4 +1,5 @@
 import { environment } from "src/environments/environment"
+import { TypeRole } from "../enum/shared.enum";
 
 const base_url = environment.base_url;
 
@@ -9,7 +10,7 @@ export class User {
         public password?: string,
         public img?: string,
         public google?: boolean,
-        public role?: string,
+        public role?: TypeRole,
         public uid?: string
     ) { }
 

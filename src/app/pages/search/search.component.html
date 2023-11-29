@@ -1,0 +1,101 @@
+<div class="row animated fastIn fast">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h3>Users</h3>
+
+                <div *ngIf="!users.length" class="alert alert-info animated fadeIn fast" role="alert">
+                    There are no <strong>users</strong> with this term
+                </div>
+
+                <div *ngIf="users.length" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users" class="animated fadeIn fast">
+                                <td>
+                                    <img class="w75" [src]="user.img | image: typeUser" alt="avatar">
+                                </td>
+                                <td>{{user.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h3>Hospitals</h3>
+
+                <div *ngIf="!hospitals.length" class="alert alert-info animated fadeIn fast" role="alert">
+                    There are no <strong>hospitals</strong> with this term
+                </div>
+
+                <div *ngIf="hospitals.length" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitals" class="animated fadeIn fast">
+                                <td>
+                                    <img class="w75" [src]="hospital.img | image: typeHospital" alt="avatar">
+                                </td>
+                                <td>{{hospital.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+
+                <h3>Doctors</h3>
+
+                <div *ngIf="!doctors.length" class="alert alert-info animated fadeIn fast" role="alert">
+                    There are no <strong>doctors</strong> with this term
+                </div>
+
+                <div *ngIf="doctors.length" class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Doctor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doctor of doctors" class="animated fadeIn fast">
+                                <td>
+                                    <img class="w75" [src]="doctor.img | image: typeUser" alt="avatar">
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/dashboard/doctor', doctor._id]">
+                                        {{doctor.name}}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

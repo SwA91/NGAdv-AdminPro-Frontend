@@ -49,3 +49,13 @@ export enum TypeParamsQS {
     PHOTO = 'photo',
     FROM = 'from',
 }
+
+/**
+ * Enum for type role in the app
+ * @readonly
+ * @enum
+ */
+export enum TypeRole {
+    USER_ROLE = 'USER_ROLE',
+    ADMIN_ROLE = 'ADMIN_ROLE'
+}

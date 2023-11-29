@@ -47,9 +47,9 @@
                 <li class="nav-item hidden-xs-down search-box"> <a
                         class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
                             class="ti-search"></i></a>
-                    <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i
-                                class="ti-close"></i></a>
+                    <form (ngSubmit)="search(txtTerm.value)" class="app-search">
+                        <input #txtTerm type="text" class="form-control" placeholder="Search hospital, doctor and user...">
+                        <a class="srh-btn"><i class="ti-close"></i></a>
                     </form>
                 </li>
                 <!-- ============================================================== -->

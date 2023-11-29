@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TypeAPI, TypeHeader, TypeTable } from '../enum/shared.enum';
-import { IListResultResponse } from '../interfaces/api.interface';
+import { IListResultResponse, ISearchGlobalResponse } from '../interfaces/api.interface';
 import { User } from '../models/user.model';
 
 const base_url = environment.base_url;
@@ -17,7 +17,15 @@ export class SearchService {
     private http: HttpClient
   ) { }
 
+  searchGlobal(term: string) {
+
+    const url = `${base_url}/${TypeAPI.ALL}/${term}`;
+
+    return this.http.get<ISearchGlobalResponse>(url, this.headers);
+  }
+
   search(type: TypeTable, term: string = '') {
+
     const url = `${base_url}/${TypeAPI.ALL}/${TypeAPI.COLLECTION}/${type}/${term}`;
 
     return this.http.get<IListResultResponse>(url, this.headers)

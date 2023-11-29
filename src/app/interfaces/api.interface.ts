@@ -11,13 +11,20 @@ export interface IUploadsUserResponse extends IGenericResponse {
     nameFile: string;
 }
 
-// especial interface only for Users
+// special interface only for Users
 export interface IGetUsersResponse extends IGenericResponse {
     users: User[],
     total: number
 }
 
-// especial interfaces for list User, Hospital and Doctor
+// special interfaces for list User, Hospital and Doctor
+export interface ISearchGlobalResponse extends IGenericResponse {
+    users: User[],
+    hospitals: Hospital[],
+    doctors: Doctor[],
+}
+
+// special interfaces for list User, Hospital and Doctor
 export interface IListResultResponse extends IGenericResponse {
     result: User[] | Hospital[] | Doctor[],
 }
