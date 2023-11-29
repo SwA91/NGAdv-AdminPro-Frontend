@@ -9,9 +9,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
-import { PromesasComponent } from './promesas/promesas.component';
-import { RxjsComponent } from './rxjs/rxjs.component';
-import { ProfileComponent } from './perfil/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
@@ -26,8 +24,6 @@ import { SearchComponent } from './search/search.component';
     Grafica1Component,
     PagesComponent,
     AccountSettingsComponent,
-    PromesasComponent,
-    RxjsComponent,
     ProfileComponent,
     UsersComponent,
     HospitalsComponent,
