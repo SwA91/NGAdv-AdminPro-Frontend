@@ -16,7 +16,7 @@
             "allowedCommonJsDependencies": [
               "sweetalert2"
             ],
-            "outputPath": "dist/03-adminpro",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
