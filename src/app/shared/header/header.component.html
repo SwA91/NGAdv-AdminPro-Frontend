@@ -44,11 +44,11 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item hidden-xs-down search-box"> <a
-                        class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i
+                <li class="nav-item search-box"> <a
+                        class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i
                             class="ti-search"></i></a>
                     <form (ngSubmit)="search(txtTerm.value)" class="app-search">
-                        <input #txtTerm type="text" class="form-control" placeholder="Search hospital, doctor and user...">
+                        <input #txtTerm type="text" class="form-control" placeholder="Search something & Enter">
                         <a class="srh-btn"><i class="ti-close"></i></a>
                     </form>
                 </li>
@@ -68,7 +68,7 @@
                             <li>
                                 <div class="message-center">
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
                                         <div class="mail-contnet">
                                             <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new
@@ -76,7 +76,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
                                         <div class="mail-contnet">
                                             <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have
@@ -84,7 +84,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
                                         <div class="mail-contnet">
                                             <h5>Settings</h5> <span class="mail-desc">You can customize this template as
@@ -92,7 +92,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
                                         <div class="mail-contnet">
                                             <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span>
@@ -127,7 +127,7 @@
                             <li>
                                 <div class="message-center">
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="./assets/images/users/1.jpg" alt="user"
                                                 class="img-circle"> <span
                                                 class="profile-status online pull-right"></span> </div>
@@ -137,7 +137,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="./assets/images/users/2.jpg" alt="user"
                                                 class="img-circle"> <span class="profile-status busy pull-right"></span>
                                         </div>
@@ -147,7 +147,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="./assets/images/users/3.jpg" alt="user"
                                                 class="img-circle"> <span class="profile-status away pull-right"></span>
                                         </div>
@@ -157,7 +157,7 @@
                                         </div>
                                     </a>
                                     <!-- Message -->
-                                    <a href="#">
+                                    <a href="javascript:void(0)">
                                         <div class="user-img"> <img src="./assets/images/users/4.jpg" alt="user"
                                                 class="img-circle"> <span
                                                 class="profile-status offline pull-right"></span> </div>
@@ -186,10 +186,10 @@
                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
                     <div class="dropdown-menu dropdown-menu-right animated fadeIn fast"> <a class="dropdown-item"
-                            href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item"
-                            href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item"
-                            href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item"
-                            href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
+                            href="javascript:void(0)"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item"
+                            href="javascript:void(0)"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item"
+                            href="javascript:void(0)"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item"
+                            href="javascript:void(0)"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
                 </li>
                 <!-- ============================================================== -->
                 <!-- Profile -->
@@ -217,8 +217,6 @@
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a routerLink="./profile"><i class="ti-user"></i> My Profile</a></li>
-                            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a routerLink="account-settings"><i class="ti-settings"></i> Account Setting</a></li>
                             <li role="separator" class="divider"></li>
